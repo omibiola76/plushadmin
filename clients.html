@@ -1,777 +1,558 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Realm - Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Bluth Company">
-    <link rel="shortcut icon" href="assets/ico/favicon.png">
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <link href="assets/css/theme.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/alertify.css" rel="stylesheet">
-	  			<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.3.0/gridstack.min.css" />
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-    <link rel="Favicon Icon" href="favicon.ico">
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div id="wrap">
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          
-           <a class="btn btn-navbar visible-phone" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-           <a class="btn btn-navbar slide_menu_left visible-tablet">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<link href="assets/ico/favicon.png" rel="shortcut icon">
+	<link href="assets/css/bootstrap.css" rel="stylesheet">
+	<link href="assets/css/theme.css" rel="stylesheet">
+	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
+	<link href="assets/css/alertify.css" rel="stylesheet">
+	<link href="//cdnjs.cloudflare.com/ajax/libs/gridstack.js/0.3.0/gridstack.min.css" rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+	<link href="favicon.ico" rel="favicon icon">
+	<style>
+	                           body {
+	                               background-color: #fafafa;
+	                           }
 
-          <div class="top-menu visible-desktop">
-            <
-            <ul class="pull-right">  
-              <li><a href="login.html"><i class="icon-off"></i> Logout</a></li>
-            </ul>
-			<ul class="pull-right">
-              <li><a id="messages" data-notification="2" href="#"><i class="icon-envelope"></i> Messages</a></li>
-              <li><a id="notifications" data-notification="3" href="#"><i class="icon-globe"></i> Notifications</a></li>
-            </ul>
-          </div>
+	                           .table-sortable {
+	                               position: relative;
+	                           }
 
-          <div class="top-menu visible-phone visible-tablet">
-            <ul class="pull-right">  
-              <li><a title="link to View all Messages page, no popover in phone view or tablet" href="#"><i class="icon-envelope"></i></a></li>
-              <li><a title="link to View all Notifications page, no popover in phone view or tablet" href="#"><i class="icon-globe"></i></a></li>
-              <li><a href="login.html"><i class="icon-off"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+	                           .table-sortable .sortable-placeholder {
+	                               height: 37px;
+	                           }
 
-    <div class="container-fluid">
-     
-      <!-- Side menu -->
-      <div class="sidebar-nav nav-collapse collapse">
-        <div class="user_side clearfix">
-          <img src="assets/img/contact-icon.png" alt="Plush Management">
-          <h5>User</h5>
-          <a href="#"><i class="icon-cog"></i> Settings</a>        
-        </div>
-        <div class="accordion" id="accordion2">
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle active b_F79999" href="index.html"><i class="icon-dashboard"></i> <span>Dashboard</span></a>
-            </div>
-          </div>
-			<div class="accordion-group">
-            <div class="accordion-heading"><a class="accordion-toggle b_F5C294" href="clients.html"><em class="icon-user"></em> <span>Clients</span></a></div>
-          </div> 
-          
-          
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle b_F6F1A2" href="tasks.html"><i class="icon-tasks"></i> <span>Tasks</span></a>
-            </div>
-          </div>
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle b_C1F8A9" href="analytics.html"><i class="icon-bar-chart"></i> <span>Analytics</span></a>
-            </div>
-          </div> 
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle b_9FDDF6" href="tickets.html"><i class="icon-bullhorn"></i> <span>Support Tickets</span></a>
-            </div>
-          </div>      
-        </div>
-      </div>
-      <!-- /Side menu -->
+	                           .table-sortable .sortable-placeholder:after {
+	                               position: absolute;
+	                               z-index: 10;
+	                               content: " ";
+	                               height: 37px;
+	                               background: #f9f9f9;
+	                               left: 0;
+	                               right: 0;
+	                           }
 
-      <!-- Main window -->
-<div class="main_container" id="dashboard_page">
-        <div class="row-fluid">
-			            <div class="widget widget-padding span18">
-<div class="widget-header">
-                <i class="icon-bar-chart"></i>
-                <h5>Monthly Summary</h5>
-               
-              </div>
-          <div class="overview_boxes">
-            <div class="box_row clearfix">
-              <div class="widget-tasks-statistics">
-                <div class="userstats clearfix" style="margin-top: 25px;">
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
-                    <div class="white">
-                      <i style="color:#E28271" class="icon-eye-open"></i>
-                      <p style="color:#E28271" >+85%</p>
-                    </div>
-                    <div>
-                      <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="85">   
-                    </div>
-                    <p><strong>+530</strong>Pickups/Dropoffs</p>
-                    </a>
-                </div>
-              </div>
-              <div class="widget-tasks-statistics">
-                <div class="userstats clearfix" style="margin-top: 25px;">
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
-                    <div class="white">
-                      <i style="color:#98E5EA" class="icon-user"></i>
-                      <p style="color:#98E5EA" >+13%</p>
-                    </div>
-                    <div>
-                      <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="13">   
-                    </div>
-                    <p><strong>57</strong>Receiving</p>
-                    </a>
-                </div>
-              </div>
-              <div class="widget-tasks-statistics">
-                <div class="userstats clearfix" style="margin-top: 25px;">
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
-                    <div class="white">
-                      <i style="color:#AEEA98" class="icon-bullhorn"></i>
-                      <p style="color:#AEEA98" >+15%</p>
-                    </div>
-                    <div>
-                      <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="15">   
-                    </div>
-                    <p><strong>35/235</strong>Deliveries</p>
-                    </a>
-                </div>
-              </div>
-            </div> 
-            <div class="box_row clearfix">
-              <div class="widget-tasks-statistics">
-                <div class="userstats clearfix" style="margin-top: 25px;">
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
-                    <div class="white">
-                      <i style="color:#98AEEA" class="icon-thumbs-up"></i>
-                      <p style="color:#98AEEA" >+55%</p>
-                    </div>
-                    <div>
-                      <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="55">   
-                    </div>
-                    <p><strong>$14,230</strong>Full Installs</p>
-                    </a>
-                </div>
-              </div>
-              <div class="widget-tasks-statistics">
-                <div class="userstats clearfix" style="margin-top: 25px;">
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
-                    <div class="white">
-                      <i style="color:#EA98AB" class="icon-credit-card"></i>
-                      <p style="color:#EA98AB" >+35%</p>
-                    </div>
-                    <div>
-                      <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="35">   
-                    </div>
-                    <p><strong>152</strong>New Clients</p>
-                    </a>
-                </div>
-              </div>
-              <div class="widget-tasks-statistics">
-                <div class="userstats clearfix" style="margin-top: 25px;">
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
-                    <div class="white">
-                      <i style="color:#F6BF99" class="icon-phone"></i>
-                      <p style="color:#F6BF99" >+97%</p>
-                    </div>
-                    <div>
-                      <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="97">   
-                    </div>
-                    <p><strong>592</strong>Consults</p>
-                    </a>
-                </div>
-              </div>
-            </div> 
-          </div>
-        </div>  
+	</style>
+	<title></title>
+</head>
+<body>
+	<div id="wrap">
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="btn btn-navbar visible-phone" data-target=".nav-collapse" data-toggle="collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></a> <a class="btn btn-navbar slide_menu_left visible-tablet"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></a>
+					<div class="top-menu visible-desktop">
+						<ul class="pull-right">
+							<li>
+								<a href="login.html"><i class="icon-off"></i> Logout</a>
+							</li>
+						</ul>
+						<ul class="pull-right">
+							<li>
+								<a data-notification="2" href="#" id="messages"><i class="icon-envelope"></i> Messages</a>
+							</li>
+							<li>
+								<a data-notification="3" href="#" id="notifications"><i class="icon-globe"></i> Notifications</a>
+							</li>
+						</ul>
+					</div>
+					<div class="top-menu visible-phone visible-tablet">
+						<ul class="pull-right">
+							<li>
+								<a href="#" title="link to View all Messages page, no popover in phone view or tablet"><i class="icon-envelope"></i></a>
+							</li>
+							<li>
+								<a href="#" title="link to View all Notifications page, no popover in phone view or tablet"><i class="icon-globe"></i></a>
+							</li>
+							<li>
+								<a href="login.html"><i class="icon-off"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-
-
-			
-	
-		  <div class="widget-header"> 
-			  <i class="icon-list-alt"></i>
-		    <h5>Client Management</h5>
-  </div>
-        <div class="row-fluid"> </div>  
-        <div class="row-fluid">
-          <div class="widget widget-padding span12">
-                   <div class="row-fluid">
-        <div class="row-fluid">
-
-            <div class="widget-body">
-              <div class="widget-forms clearfix">
-              <form class="form-horizontal">
-				  <div class="control-group">
-                    <div class="dropdown">
-                      <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">Quick Search <em class="icon-caret-down"></em></a>
-                      <input class="span7" type="text" data-source="[&quot;Alabama&quot;,&quot;Alaska&quot;,&quot;Arizona&quot;,&quot;Arkansas&quot;,&quot;California&quot;,&quot;Colorado&quot;,&quot;Connecticut&quot;,&quot;Delaware&quot;,&quot;Florida&quot;,&quot;Georgia&quot;,&quot;Hawaii&quot;,&quot;Idaho&quot;,&quot;Illinois&quot;,&quot;Indiana&quot;,&quot;Iowa&quot;,&quot;Kansas&quot;,&quot;Kentucky&quot;,&quot;Louisiana&quot;,&quot;Maine&quot;,&quot;Maryland&quot;,&quot;Massachusetts&quot;,&quot;Michigan&quot;,&quot;Minnesota&quot;,&quot;Mississippi&quot;,&quot;Missouri&quot;,&quot;Montana&quot;,&quot;Nebraska&quot;,&quot;Nevada&quot;,&quot;New Hampshire&quot;,&quot;New Jersey&quot;,&quot;New Mexico&quot;,&quot;New York&quot;,&quot;North Dakota&quot;,&quot;North Carolina&quot;,&quot;Ohio&quot;,&quot;Oklahoma&quot;,&quot;Oregon&quot;,&quot;Pennsylvania&quot;,&quot;Rhode Island&quot;,&quot;South Carolina&quot;,&quot;South Dakota&quot;,&quot;Tennessee&quot;,&quot;Texas&quot;,&quot;Utah&quot;,&quot;Vermont&quot;,&quot;Virginia&quot;,&quot;Washington&quot;,&quot;West Virginia&quot;,&quot;Wisconsin&quot;,&quot;Wyoming&quot;]" data-items="4" data-provide="typeahead" style="margin: 0 auto;" placeholder="Type here for auto complete…">
-<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <li><a href="#">Clients</a></li>
-                            <li><a href="#">Customers</a></li>
-                            
-                          </ul>
-                        </div>
-<div class="controls"> </diV>
-				  </div>
-				  
-              	<div class="row-fluid" style="margin-bottom:15px;"><a class="btn btn-small btn-box bubble bubble-danger span2 tips" href="new_client.html"><em class="icon-user"></em><span>Add New Client</span></a> <a class="btn btn-small btn-box span2" href="#"><em class="icon-map-marker"></em><span>Delivery Requests</span></a> <a class="btn btn-small btn-box bubble bubble-info span2 tips" href="#"><em class="icon-thumbs-up"></em><span>Whiteboard</span></a> <a class="btn btn-small btn-box bubble bubble-info span2 tips" href="#"><em class="icon-twitter"></em><span>Invoice Manager</span></a>  <a class="btn btn-small btn-box bubble bubble-warning span2 tips" href="#"><em class="icon-globe"></em><span>Region</span></a></div>	
-              		
-
-              	
-
-              </div>
-					<!--<div class="control-group">
-<div class="controls"> </diV>
-				  </div>
-<div class="control-group">
-<div class="controls"> </diV>
-                  </div>
-                  <div class="control-group">
-<div class="controls"> </diV>
-                  </div>
-                  <div class="control-group">
-<div class="controls"> </diV>
-                  </div>
-                  <div class="control-group">
-<div class="controls"> </diV>
-                  </div>
-<div class="control-group">
-<div class="controls">
-                  <div class="input-append"> </div>
-                </div>
-                  </div>
-<div class="control-group">
-<div class="controls"> </div>
-                  </div>
-<div class="control-group">
-<div class="controls"> </div>
-                  </div>
-<div class="control-group">
-<div class="controls"> </div>
-                  </div>
-                  <div class="control-group">
-<div class="controls"> </div>
-                  </div>
-                  <div class="control-group">
-<div class="controls">
-                  <div class="span7">
-                          <textarea rows="5" id="tinyeditor" style="height:100px;"></textarea>
-                        </div>
-                      </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="widget-footer">
-               <button class="btn btn-primary" type="submit">Save</button>
-               <button class="btn" type="button">Cancel</button>
-            </div>
-          </div>
-        </div>  
-        
-        <div class="row-fluid">
-          <div class="widget widget-padding span12">
-            <div class="widget-header"><i class="icon-list-alt"></i><h5>Date Picker</h5></div>
-            <div class="widget-body">
-              <div class="widget-forms clearfix">
-                <form class="form-horizontal">
-                  <div class="control-group">
-                    <label class="control-label">Basic</label>
-                      <div class="controls">
-                        <div class="input-append date datepicker datepicker-basic" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                          <input size="16" type="text" value="12-02-2012">
-                          <span class="add-on"><i class="icon-calendar"></i></span>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">Restricted</label>
-                      <div class="controls">
-                        <div class="input-append date datepicker datepicker-basic" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                          <input readonly="" size="16" type="text" value="12-02-2012">
-                          <span class="add-on"><i class="icon-calendar"></i></span>
-                        </div>
-                        <span class="help-inline"><code>readonly=""</code></span>
-                      </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">Start with years</label>
-                      <div class="controls">
-                        <div class="input-append date datepicker" id="datepicker-years" data-date-format="dd-mm-yyyy" value="12-02-2012" data-date="12-02-2012">
-                          <input readonly="" size="16" type="text" >
-                          <span class="add-on"><i class="icon-calendar"></i></span>
-                        </div>
-                        <span class="help-inline"><code>viewMode:2</code></span>
-                      </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row-fluid">
-          <div class="widget widget-padding span12">
-            <div class="widget-header"><i class="icon-list-alt"></i><h5>Color Picker</h5></div>
-            <div class="widget-body">
-              <div class="widget-forms clearfix">
-                <form class="form-horizontal">
-                  <div class="control-group">
-                    <label class="control-label">RGB</label>
-                      <div class="controls">
-                        <div class="input-append color colorpicker colorpicker-rgb" data-color="rgb(255, 146, 180)" data-color-format="rgb">
-                          <input type="text" value="" >
-                          <span class="add-on"><i style="background-color: rgb(255, 146, 180)"></i></span>
-                        </div>
-                        <span class="help-inline"><code>format:'rgb'</code></span>
-                      </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">RGBA</label>
-                      <div class="controls">
-                        <div class="input-append color colorpicker colorpicker-rgba" data-color="rgb(255, 146, 180)" data-color-format="rgb">
-                          <input type="text" value="" >
-                          <span class="add-on"><i style="background-color: rgb(255, 146, 180)"></i></span>
-                        </div>
-                        <span class="help-inline"><code>format:'rgba'</code></span>
-                      </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">HEX</label>
-                      <div class="controls">
-                        <div class="input-append color colorpicker colorpicker-hex" data-color="rgb(255, 146, 180)" data-color-format="rgb">
-                          <input type="text" value="" >
-                          <span class="add-on"><i style="background-color: rgb(255, 146, 180)"></i></span>
-                        </div>
-                        <span class="help-inline"><code>format:'hex'</code></span>
-                      </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row-fluid">
-          <div class="widget widget-padding span6">
-            <div class="widget-header"><i class="icon-list-alt"></i><h5>Validation Horizontal</h5></div>
-            <form action="#register_form1" id="register_form1" class="form-horizontal">
-              <div class="widget-body" style="min-height:330px;">
-                <div class="widget-forms clearfix">
-                    <legend>Please fill this form</legend>
-                    <div class="control-group ">
-                      <label class="control-label">Username:</label>
-                      <div class="controls"><input type="text" name="username" id="form_username"></div>
-                    </div>
-
-                    <div class="control-group ">
-                      <label class="control-label">Choose Password:</label>
-                      <div class="controls"><input type="password" name="password" id="form_password"></div>
-                    </div>
-
-                    <div class="control-group ">
-                      <label class="control-label">Confirm Password:</label>
-                      <div class="controls"><input type="password" name="password_confirm" id="password_confirm"></div>
-                    </div>
-
-                    <div class="control-group ">
-                      <label class="control-label">E-mail:</label>
-                      <div class="controls"><input type="text" name="email" id="form_email"></div>
-                    </div>
-                </div>
-              </div>
-              <div class="widget-footer">
-                <button type="submit" class="pull-left btn btn-info btn-small">Submit</button>
-              </div>
-            </form>
-          </div>
-          <div class="widget widget-padding span6">
-            <div class="widget-header"><i class="icon-list-alt"></i><h5>Validation Inline</h5></div>
-            <form action="#register_form2" id="register_form2">
-              <div class="widget-body" style="min-height:330px;">
-                <div class="widget-forms clearfix">
-                    <div class="control-group ">
-                      <label for="form_username">Username:</label>
-                      <div class="controls"><input type="text" name="username" id="form_username"></div>
-                    </div>
-
-                    <div class="control-group ">
-                      <label for="form_password">Choose Password:</label>
-                      <div class="controls"><input type="password" name="password" id="form_password"></div>
-                    </div>
-
-                    <div class="control-group ">
-                      <label for="password_confirm">Confirm Password:</label>
-                      <div class="controls"><input type="password" name="password_confirm" id="password_confirm"></div>
-                    </div>
-
-                    <div class="control-group ">
-                      <label for="form_email">E-mail:</label>
-                      <div class="controls"><input type="text" name="email" id="form_email"></div>
-                    </div>
-                </div>
-              </div>
-              <div class="widget-footer">
-                <button type="submit" class="pull-left btn btn-info btn-small">Submit</button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="row-fluid">
-          <div class="widget widget-padding span6" id="wizard">
-            <div class="widget-header">
-              <ul class="nav nav-tabs">
-                <li><a href="#tab1" data-toggle="tab">Basic Info</a></li>
-                <li><a href="#tab2" data-toggle="tab">Details</a></li>
-                <li><a href="#tab3" data-toggle="tab">Finish</a></li>
-              </ul>
-              <div class="progress progress-success" id="bar">
-                <div class="bar" style="width: 66.6667%;"></div>
-              </div>
-            </div>
-              <div class="widget-body" style="height:335px">
-
-                <form class="form">
-                  <div class="tab-content">
-                    <div class="tab-pane" id="tab1">
-                      <h4>Wizard w/ a progress bar</h4>
-                      <hr>
-                      <div class="control-group">
-                        <label class="control-label">Item Name</label>
-                        <div class="controls">
-                          <input class="span7" type="text" placeholder="Choose a title">
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label">Item Description</label>
-                        <div class="controls">
-                          <textarea class="span7" style="" rows="5"></textarea>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane" id="tab2">                   
-                      <h4>Wizard</h4>
-                      <hr>
-                      <div class="control-group">
-                        <label class="control-label">Item Price</label>
-                        <div class="controls">
-                          <div class="input-append">
-                             <input type="text" placeholder="5.000" class="span5"><span class="add-on">$</span>
-                          </div>
-                       </div>
-                      </div>                  
-
-                      <div class="control-group">
-                        <label class="control-label">Item Tags</label>
-                        <div class="controls">
-                          <input class="span7" id="wizard_tags" type="text">
-                          <span class="help-block muted" style="float:left;clear:left">Select up to 4 tags for your item</span>
-                        </div>
-                      </div>
-
-                    </div>
-                    <div class="tab-pane pad15" id="tab3">
-                     <h2 style="text-align:center;margin: 70px 0 10px;color:#444;"><i style="color:#C4E587" class="icon-ok-sign"></i> Wizard Complete</h2> 
-                     <p class="muted" style="width: 70%; margin: 0px auto 20px; text-align: center;">Here is <a target="_blank" href="http://vadimg.com/twitter-bootstrap-wizard/">the link</a> to the documentation for this plugin. This demo code I wrote is well commented in the JS file realm.js near line 160.</p>
-                    </div>
-                  </div>  
-                </form>  
-              </div>
-              <div class="widget-footer">
-                <ul class="wizard">
-                  <li class="previous first" style="display:none;"><a class="btn" href="javascript:void(0)"><i class="icon-double-angle-left"></i> First</a></li>
-                  <li class="previous"><a class="btn" href="javascript:void(0)"><i class="icon-angle-left"></i> Previous</a></li>
-                  <li class="next last" style="display:none;"><a class="btn" href="javascript:void(0)">Last <i class="icon-double-angle-right"></i></a></li>
-                  <li class="next"><a class="btn" href="javascript:void(0)">Next <i class="icon-angle-right"></i></a></li>
-                </ul>
-              </div>
-          </div>
-          <div class="widget widget-padding span6" id="wizard_validate">
-            <div class="widget-header">
-              <ul class="nav nav-tabs">
-                <li><a href="#validate_tab1" data-toggle="tab">Basic Info</a></li>
-                <li><a href="#validate_tab2" data-toggle="tab">Details</a></li>
-                <li><a href="#validate_tab3" data-toggle="tab">Finish</a></li>
-              </ul>
-            </div>
-            <div class="widget-body" style="height:335px">
-              <form class="form">
-                <div class="tab-content">
-                  <div class="tab-pane" id="validate_tab1">
-                    <h4>Wizard w/ simple validation</h4>
-                    <hr>
-                    <div class="control-group">
-                      <label class="control-label">Item Name</label>
-                      <div class="controls">
-                        <input class="span7" id="val_title" type="text" placeholder="Choose a title">
-                      </div>
-                    </div>
-                    <div class="control-group">
-                      <label class="control-label">Item Description</label>
-                      <div class="controls">
-                        <textarea class="span7" id="val_description" style="" rows="5"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab-pane" id="validate_tab2">                   
-                    <h4>Wizard</h4>
-                    <hr>
-                    <div class="control-group">
-                      <label class="control-label">Item Price</label>
-                      <div class="controls">
-                        <div class="input-append">
-                           <input type="text" id="val_price" placeholder="5.000" class="span5"><span class="add-on">$</span>
-                        </div>
-                     </div>
-                    </div>                  
-
-                    <div class="control-group">
-                      <label class="control-label">Item Tags</label>
-                      <div class="controls">
-                        <input class="span7" id="wizard_validate_tags" type="text">
-                        <span class="help-block muted" style="float:left;clear:left">Select up to 4 tags for your item</span>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="tab-pane pad15" id="validate_tab3">
-                     <h2 style="text-align:center;margin: 70px 0 10px;color:#444;"><i style="color:#C4E587" class="icon-ok-sign"></i> Wizard Complete</h2> 
-                     <p class="muted" style="width: 70%; margin: 0px auto 20px; text-align: center;">Here is <a target="_blank" href="http://vadimg.com/twitter-bootstrap-wizard/">the link</a> to the documentation for this plugin. This demo code I wrote is well commented in the JS file realm.js near line 160.</p>
-                  </div>
-                </div>  
-              </form>  
-
-            </div>
-            <div class="widget-footer">
-              <ul class="wizard">
-                <li class="previous first" style="display:none;"><a class="btn" href="javascript:void(0)"><i class="icon-double-angle-left"></i> First</a></li>
-                <li class="previous"><a class="btn" href="javascript:void(0)"><i class="icon-angle-left"></i> Previous</a></li>
-                <li class="next last" style="display:none;"><a class="btn" href="javascript:void(0)">Last <i class="icon-double-angle-right"></i></a></li>
-                <li class="next"><a class="btn" href="javascript:void(0)">Next <i class="icon-angle-right"></i></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="row-fluid">
-          <div class="widget widget-padding span6">
-            <div class="widget-header"><i class="icon-list-alt"></i><h5>Input fields classes</h5></div>
-            <div class="widget-header-under">
-                <label>Input fields with various classes</label>
-            </div>
-            <div class="widget-body" style="height: 361px;">
-              <div class="widget-forms clearfix">
-                <form class="form-horizontal">
-                  <div class="control-group">
-                    <label class="control-label">Focused state</label>
-                    <div class="controls">
-                      <input type="text" class="focused">
-                      <span class="help-inline"><code>class="focused"</code></span>
-
-                    </div>
-                  </div>
-
-                  <div class="control-group">
-                    <label class="control-label">Error state</label>
-                    <div class="controls">
-                      <input type="text" class="error">
-                      <span class="help-inline"><code>class="error"</code></span>
-                    </div>
-                  </div>
-
-                  <div class="control-group">
-                    <label class="control-label">Warning state</label>
-                    <div class="controls">
-                      <input type="text" class="warning">
-                      <span class="help-inline"><code>class="warning"</code></span>
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">Success state</label>
-                    <div class="controls">
-                      <input type="text" class="success">
-                      <span class="help-inline"><code>class="success"</code></span>
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">Disabled state</label>
-                    <div class="controls">
-                      <input type="text" disabled="disabled">
-                      <span class="help-inline"><code>disabled="disabled"</code></span>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-
-          <div class="widget widget-padding span6">
-            <div class="widget-header"><i class="icon-list-alt"></i><h5>Input fields</h5></div>
-            <div class="widget-header-under">
-                <label>Form elements with <code>.span*</code> classes</label>
-            </div>
-            <div class="widget-body" style="height: 360px;">
-              <div class="widget-forms clearfix">
-                <div class="control-group">
-                  <div class="controls">
-                    <input type="text" class="span3" placeholder=".span3">
-                  </div>
-                </div>                
-                <div class="control-group">
-                  <div class="controls">
-                    <input type="text" class="span5" placeholder=".span5">
-                  </div>
-                </div>           
-                <div class="control-group">
-                  <div class="controls">
-                    <input type="text" class="span7" placeholder=".span7">
-                  </div>
-                </div>        
-                <div class="control-group">
-                  <div class="controls">
-                    <select class="span3">
-                      <option>1</option>
-                      <option>2</option>
-                      <option selected="selected">3</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="control-group">
-                  <div class="controls">
-                    <select class="span5">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>2</option>
-                      <option>4</option>
-                      <option selected="selected">5</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="control-group">
-                  <div class="controls">
-                    <select class="span7">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option selected="selected">7</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row-fluid">
-          <div class="widget widget-padding span6">
-            <div class="widget-header"><i class="icon-list-alt"></i><h5>Inline forms</h5></div>
-            <div class="widget-body"style="height: 250px;">
-              <div class="widget-forms clearfix">
-                <form class="form-inline">
-                  <input type="text" class="span4" placeholder="Email">
-                  <input type="password" class="span4" placeholder="Password">
-                  <button type="submit" class="btn btn-success">Sign in</button>
-                </form>
-                <form class="form-inline"  style="margin-top: 15px;">
-                  <input type="text" class="span4" placeholder="Username">
-                  <div class="input-append">
-                    <input type="text" placeholder="5.000"><span class="add-on">$</span>
-                  </div>
-                  <button type="submit" class="btn btn-success">Submit</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="widget widget-padding span6">
-            <div class="widget-header"><i class="icon-list-alt"></i><h5>Checkboxes and Radios</h5></div>
-            <div class="widget-body" style="height: 250px;">
-              <div class="widget-forms clearfix">
-                <form class="form-horizontal">
-                  <div class="control-group">
-                    <label class="control-label">Checkboxes</label>
-                    <div class="controls">
-                      <label class="checkbox">
-                        <input type="checkbox" value="">
-                        Option one
-                      </label>
-                      <label class="checkbox">
-                        <input type="checkbox" value="">
-                        Option two
-                      </label>
-                      <label class="checkbox">
-                        <input type="checkbox" value="">
-                        Option three
-                      </label>
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label">Radiobuttons</label>
-                    <div class="controls">
-                       
-                      <label class="radio">
-                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                        Option one
-                      </label> 
-                      <label class="radio">
-                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                        Option two
-                      </label> 
-                      <label class="radio">
-                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-                        Option three
-                      </label>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-        </div>
-        </div>
-
-      </div>-->
-      <!-- /Main window -->
-      
-    </div><!--/.fluid-container-->
-    </div><!-- wrap ends-->
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-    <script type="text/javascript" src='assets/js/sparkline.js'></script>
-    <script type="text/javascript" src='assets/js/morris.min.js'></script>
-    <script type="text/javascript" src="assets/js/jquery.dataTables.min.js"></script>   
-    <script type="text/javascript" src="assets/js/jquery.masonry.min.js"></script>   
-    <script type="text/javascript" src="assets/js/jquery.imagesloaded.min.js"></script>   
-    <script type="text/javascript" src="assets/js/jquery.facybox.js"></script>   
-    <script type="text/javascript" src="assets/js/jquery.alertify.min.js"></script> 
-    <script type="text/javascript" src="assets/js/jquery.knob.js"></script>
-    <script type='text/javascript' src='assets/js/fullcalendar.min.js'></script>
-    <script type='text/javascript' src='assets/js/jquery.gritter.min.js'></script>
-    <script type="text/javascript" src="assets/js/realm.js"></script>
-
-    <script type="text/javascript" src="assets/js/select2.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap-colorpicker.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap-timepicker.js"></script>
-    <script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="assets/js/jquery.bootstrap.wizard.min.js"></script>    
-    <script type="text/javascript" src="assets/js/tiny.editor.packed.js"></script>
-
-<script src="jquery.sortable.js"></script>
-
-  </body>
+	<div class="container-fluid">
+		<!-- Side menu -->
+		<div class="sidebar-nav nav-collapse collapse">
+			<div class="user_side clearfix">
+				<img alt="Plush Management" src="assets/img/contact-icon.png">
+				<h5>User</h5><a href="#"><i class="icon-cog"></i> Settings</a>
+			</div>
+			<div class="accordion" id="accordion2">
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle active b_F79999" href="index.html"><i class="icon-dashboard"></i> <span>Dashboard</span></a>
+					</div>
+				</div>
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle b_F5C294" href="clients.html"><em class="icon-user"></em> <span>Clients</span></a>
+					</div>
+				</div>
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle b_F6F1A2" href="tasks.html"><i class="icon-tasks"></i> <span>Tasks</span></a>
+					</div>
+				</div>
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle b_C1F8A9" href="analytics.html"><i class="icon-bar-chart"></i> <span>Analytics</span></a>
+					</div>
+				</div>
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle b_9FDDF6" href="tickets.html"><i class="icon-bullhorn"></i> <span>Support Tickets</span></a>
+					</div>
+				</div>
+			</div>
+		</div><!-- /Side menu -->
+		<!-- Main window -->
+		<div class="main_container" id="dashboard_page">
+			<div class="row-fluid"></div>
+			<div class="widget widget-padding">
+				<div class="widget-header">
+					<i class="icon-bar-chart"></i>
+					<h5>Monthly Summary</h5>
+				</div><!-- ===========================================================================================-->
+				<div class="widget widget-padding">
+					<div class="overview_boxes">
+						<div class="box_row clearfix">
+							<div class="widget-tasks-statistics">
+								<div class="userstats clearfix" style="margin-top: 25px;">
+									<a data-target="#example_modal2" data-toggle="modal" href="javascript:void(0)">
+									<div class="white">
+										<i class="icon-eye-open" style="color:#E28271"></i>
+										<p style="color:#E28271">+85%</p>
+									</div>
+									<div>
+										<input class="knob" data-height="120" data-readonly="true" data-thickness=".15" data-width="120" value="85">
+									</div>
+									<p><strong>+530</strong>Pickups/Dropoffs</p></a>
+								</div>
+							</div><!-- ===========================================================================================-->
+							<div class="widget-tasks-statistics">
+								<div class="userstats clearfix" style="margin-top: 25px;">
+									<a data-target="#example_modal2" data-toggle="modal" href="javascript:void(0)">
+									<div class="white">
+										<i class="icon-user" style="color:#98E5EA"></i>
+										<p style="color:#98E5EA">+13%</p>
+									</div>
+									<div>
+										<input class="knob" data-height="120" data-thickness=".15" data-width="120" value="13">
+									</div>
+									<p><strong>57</strong>Receiving</p></a>
+								</div>
+							</div><!-- ===========================================================================================-->
+							<div class="widget-tasks-statistics">
+								<div class="userstats clearfix" style="margin-top: 25px;">
+									<a data-target="#example_modal2" data-toggle="modal" href="javascript:void(0)">
+									<div class="white">
+										<i class="icon-user" style="color:#98E5EA"></i>
+										<p style="color:#98E5EA">+13%</p>
+									</div>
+									<div>
+										<input class="knob" data-height="120" data-thickness=".15" data-width="120" value="13">
+									</div>
+									<p><strong>57</strong>Receiving</p></a>
+								</div>
+							</div><!-- ===========================================================================================-->
+							<div class="widget-tasks-statistics">
+								<div class="userstats clearfix" style="margin-top: 25px;">
+									<a data-target="#example_modal2" data-toggle="modal" href="javascript:void(0)">
+									<div class="white">
+										<i class="icon-bullhorn" style="color:#AEEA98"></i>
+										<p style="color:#AEEA98">+15%</p>
+									</div>
+									<div>
+										<input class="knob" data-displayinput="false" data-height="120" data-readonly="true" data-thickness=".15" data-width="120" value="15">
+									</div>
+									<p><strong>35/235</strong>Deliveries</p></a>
+								</div>
+							</div><!-- ===========================================================================================-->
+							<div class="box_row clearfix">
+								<div class="widget-tasks-statistics">
+									<div class="userstats clearfix" style="margin-top: 25px;">
+										<a data-target="#example_modal2" data-toggle="modal" href="javascript:void(0)">
+										<div class="white">
+											<i class="icon-thumbs-up" style="color:#98AEEA"></i>
+											<p style="color:#98AEEA">+55%</p>
+										</div>
+										<div>
+											<input class="knob" data-displayinput="false" data-height="120" data-readonly="true" data-thickness=".15" data-width="120" value="55">
+										</div>
+										<p><strong>$14,230</strong>Full Installs</p></a>
+									</div>
+								</div>
+							</div><!-- ===========================================================================================-->
+							<div class="widget-tasks-statistics">
+								<div class="userstats clearfix" style="margin-top: 25px;">
+									<a data-target="#example_modal2" data-toggle="modal" href="javascript:void(0)">
+									<div class="white">
+										<i class="icon-credit-card" style="color:#EA98AB"></i>
+										<p style="color:#EA98AB">+35%</p>
+									</div>
+									<div>
+										<input class="knob" data-displayinput="false" data-height="120" data-readonly="true" data-thickness=".15" data-width="120" value="35">
+									</div>
+									<p><strong>152</strong>New Clients</p></a>
+								</div>
+							</div><!-- ===========================================================================================-->
+							<div class="widget-tasks-statistics">
+								<div class="userstats clearfix" style="margin-top: 25px;">
+									<a data-target="#example_modal2" data-toggle="modal" href="javascript:void(0)">
+									<div class="white">
+										<i class="icon-phone" style="color:#F6BF99"></i>
+										<p style="color:#F6BF99">+97%</p>
+									</div>
+									<div>
+										<input class="knob" data-displayinput="false" data-height="120" data-readonly="true" data-thickness=".15" data-width="120" value="97">
+									</div>
+									<p><strong>592</strong>Consults</p></a>
+								</div>
+							</div>
+						</div><!-- ===========================================================================================-->
+					</div>
+				</div>
+			</div><!-- ===========================================================================================-->
+			<div class="widget widget-padding">
+				<div class="widget-header">
+					<i class="icon-list-alt"></i>
+					<h5>Client Management</h5>
+				</div>
+				<div class="row-fluid">
+					<div class="widget widget-padding span12">
+						<div class="row-fluid">
+							<div class="row-fluid">
+								<div class="widget-body">
+									<div class="widget-forms clearfix">
+										<form class="form-horizontal">
+											<div class="control-group">
+												<div class="dropdown">
+													<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">Quick Search <em class="icon-caret-down"></em></a> <input class="span7" data-items="4" data-provide="typeahead" data-source="[&quot;Alabama&quot;,&quot;Alaska&quot;,&quot;Arizona&quot;,&quot;Arkansas&quot;,&quot;California&quot;,&quot;Colorado&quot;,&quot;Connecticut&quot;,&quot;Delaware&quot;,&quot;Florida&quot;,&quot;Georgia&quot;,&quot;Hawaii&quot;,&quot;Idaho&quot;,&quot;Illinois&quot;,&quot;Indiana&quot;,&quot;Iowa&quot;,&quot;Kansas&quot;,&quot;Kentucky&quot;,&quot;Louisiana&quot;,&quot;Maine&quot;,&quot;Maryland&quot;,&quot;Massachusetts&quot;,&quot;Michigan&quot;,&quot;Minnesota&quot;,&quot;Mississippi&quot;,&quot;Missouri&quot;,&quot;Montana&quot;,&quot;Nebraska&quot;,&quot;Nevada&quot;,&quot;New Hampshire&quot;,&quot;New Jersey&quot;,&quot;New Mexico&quot;,&quot;New York&quot;,&quot;North Dakota&quot;,&quot;North Carolina&quot;,&quot;Ohio&quot;,&quot;Oklahoma&quot;,&quot;Oregon&quot;,&quot;Pennsylvania&quot;,&quot;Rhode Island&quot;,&quot;South Carolina&quot;,&quot;South Dakota&quot;,&quot;Tennessee&quot;,&quot;Texas&quot;,&quot;Utah&quot;,&quot;Vermont&quot;,&quot;Virginia&quot;,&quot;Washington&quot;,&quot;West Virginia&quot;,&quot;Wisconsin&quot;,&quot;Wyoming&quot;]" placeholder="Type here for auto complete…" style="margin: 0 auto;" type="text">
+													<ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
+														<li>
+															<a href="#">Clients</a>
+														</li>
+														<li>
+															<a href="#">Customers</a>
+														</li>
+													</ul>
+												</div>
+												<div class="controls"></div>
+											</div>
+											<div class="row-fluid" style="margin-bottom:15px;">
+												<a class="btn btn-small btn-box bubble bubble-danger span2 tips" href="new_client.html"><em class="icon-user"></em><span>Add New Client</span></a> <a class="btn btn-small btn-box span2" href="#"><em class="icon-map-marker"></em><span>Delivery Requests</span></a> <a class="btn btn-small btn-box bubble bubble-info span2 tips" href="#"><em class="icon-thumbs-up"></em><span>Whiteboard</span></a> <a class="btn btn-small btn-box bubble bubble-info span2 tips" href="#"><em class="icon-twitter"></em><span>Invoice Manager</span></a> <a class="btn btn-small btn-box bubble bubble-warning span2 tips" href="#"><em class="icon-globe"></em><span>Region</span></a>
+											</div>
+										</form>
+									</div>
+								</div><!-- /Main window -->
+							</div><!--/.fluid-container-->
+						</div>
+					</div>
+				</div>
+			</div><!-- ===========================================================================================-->
+			<div class="row-fluid"></div>
+			<div class="row-fluid">
+				<div class="widget widget-padding span12">
+					<div class="widget-header">
+						<i class="icon-group"></i>
+						<h5>Delivery Requests</h5>
+						<div class="widget-buttons">
+							<a class="tip collapse" data-collapsed="false" data-title="Collapse" href="#"><i class="icon-chevron-up"></i></a>
+						</div>
+					</div>
+					<div class="widget-body">
+						<table class="table table-striped table-bordered dataTable" id="users">
+							<thead>
+								<tr>
+									<th>Request Date</th>
+									<th>Client</th>
+									<th>Item</th>
+									<th>Images</th>
+									<th>Location</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Amie</td>
+									<td>Admin</td>
+									<td>20-05-2012</td>
+									<td><span class="label label-success">Active</span></td>
+									<td>
+										<div class="btn-group">
+											<a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">Action <span class="caret"></span></a>
+											<ul class="dropdown-menu pull-right">
+												<li>
+													<a href="#"><i class="icon-envelope"></i> Email</a>
+												</li>
+												<li>
+													<a href="#"><i class="icon-edit"></i> Edit</a>
+												</li>
+												<li>
+													<a href="#"><i class="icon-trash"></i> Delete</a>
+												</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Katy</td>
+									<td>User</td>
+									<td>12-08-2012</td>
+									<td><span class="label label-success">Active</span></td>
+									<td>
+										<div class="btn-group">
+											<a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">Action <span class="caret"></span></a>
+											<ul class="dropdown-menu pull-right">
+												<li>
+													<a href="#"><i class="icon-envelope"></i> Email</a>
+												</li>
+												<li>
+													<a href="#"><i class="icon-edit"></i> Edit</a>
+												</li>
+												<li>
+													<a href="#"><i class="icon-trash"></i> Delete</a>
+												</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>Serena</td>
+									<td>User</td>
+									<td>05-01-2013</td>
+									<td><span class="label label-success">Active</span></td>
+									<td>
+										<div class="btn-group">
+											<a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">Action <span class="caret"></span></a>
+											<ul class="dropdown-menu pull-right">
+												<li>
+													<a href="#"><i class="icon-envelope"></i> Email</a>
+												</li>
+												<li>
+													<a href="#"><i class="icon-edit"></i> Edit</a>
+												</li>
+												<li>
+													<a href="#"><i class="icon-trash"></i> Delete</a>
+												</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div><!-- /widget-body -->
+				</div><!-- /widget -->
+			</div>
+			<div class="row-fluid">
+				<div class="widget widget-padding span12">
+					<div class="widget-header">
+						<i class="icon-group"></i>
+						<h5>Invoice Manager</h5>
+						<div class="widget-buttons">
+							<a class="tip collapse" data-collapsed="false" data-title="Collapse" href="#"><i class="icon-chevron-up"></i></a>
+						</div>
+					</div>
+					<div class="widget-body">
+						<table class="table table-striped table-bordered dataTable" id="users">
+							<thead>
+								<tr>
+									<th>Invoice #</th>
+									<th>Invoice Date</th>
+									<th>Client</th>
+									<th>Customer</th>
+									<th>Invoice Type</th>
+									<th>Sub-Total</th>
+									<th>Paid</th>
+									<th>Balance Due</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Amie</td>
+									<td>Admin</td>
+									<td>20-05-2012</td>
+									<td><span class="label label-success">Active</span></td>
+									<td>
+										<div class="btn-group">
+											<a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">Action <span class="caret"></span></a>
+											<ul class="dropdown-menu pull-right">
+												<li>
+													<a href="#"><i class="icon-envelope"></i> Email</a>
+												</li>
+												<li>
+													<a href="#"><i class="icon-edit"></i> Edit</a>
+												</li>
+												<li>
+													<a href="#"><i class="icon-trash"></i> Delete</a>
+												</li>
+											</ul>
+										</div>
+									</td>
+									<td>Amie</td>
+									<td>Amie</td>
+									<td>Amie</td>
+									<td>Amie</td>
+								</tr>
+							</tbody>
+						</table>
+					</div><!-- /widget-body -->
+				</div><!-- /widget -->
+			</div>
+			<div class="row-fluid">
+				<div class="widget widget-padding span12">
+					<div class="widget-header">
+						<i class="icon-group"></i>
+						<h5>Invoice Manager</h5>
+						<div class="widget-buttons">
+							<a class="tip collapse" data-collapsed="false" data-title="Collapse" href="#"><i class="icon-chevron-up"></i></a>
+						</div>
+					</div>
+					<div class="container-fluid">
+						<div class="container">
+							<div class="tab-content">
+								<div class="tab-pane fade in active" id="demos">
+									<section>
+										<div class="row thumbnail-sortable">
+											<div class="col-sm-6 col-md-4">
+												<div class="thumbnail">
+													<div class="caption">
+														<h3>Thumbnail label 1</h3>
+														<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+														<p><a class="btn btn-primary" href="#" role="button">Button</a> <a class="btn btn-default" href="#" role="button">Button</a></p>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-6 col-md-4">
+												<div class="thumbnail">
+													<div class="caption">
+														<h3>Thumbnail label 2</h3>
+														<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+														<p><a class="btn btn-primary" href="#" role="button">Button</a> <a class="btn btn-default" href="#" role="button">Button</a></p>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-6 col-md-4">
+												<div class="thumbnail">
+													<div class="caption">
+														<h3>Thumbnail label 3</h3>
+														<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+														<p><a class="btn btn-primary" href="#" role="button">Button</a> <a class="btn btn-default" href="#" role="button">Button</a></p>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-6 col-md-4">
+												<div class="thumbnail">
+													<div class="caption">
+														<h3>Thumbnail label 4</h3>
+														<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+														<p><a class="btn btn-primary" href="#" role="button">Button</a> <a class="btn btn-default" href="#" role="button">Button</a></p>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-6 col-md-4">
+												<div class="thumbnail">
+													<div class="caption">
+														<h3>Thumbnail label 5</h3>
+														<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+														<p><a class="btn btn-primary" href="#" role="button">Button</a> <a class="btn btn-default" href="#" role="button">Button</a></p>
+													</div>
+												</div>
+											</div>
+											<div class="col-xs-6 col-xs-4">
+												<div class="thumbnail">
+													<div class="caption">
+														<h3>Thumbnail label 6</h3>
+														<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+														<p><a class="btn btn-primary" href="#" role="button">Button</a> <a class="btn btn-default" href="#" role="button">Button</a></p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div><!-- /widget-body -->
+				</div><!-- /widget -->
+			</div><!-- wrap ends-->
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+			</script> 
+			<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript">
+			</script> 
+			<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js" type="text/javascript">
+			</script> 
+			<script src="assets/js/bootstrap.js" type="text/javascript">
+			</script> 
+			<script src='assets/js/sparkline.js' type="text/javascript">
+			</script> 
+			<script src='assets/js/morris.min.js' type="text/javascript">
+			</script> 
+			<script src="assets/js/jquery.dataTables.min.js" type="text/javascript">
+			</script> 
+			<script src="assets/js/jquery.masonry.min.js" type="text/javascript">
+			</script> 
+			<script src="assets/js/jquery.imagesloaded.min.js" type="text/javascript">
+			</script> 
+			<script src="assets/js/jquery.facybox.js" type="text/javascript">
+			</script> 
+			<script src="assets/js/jquery.alertify.min.js" type="text/javascript">
+			</script> 
+			<script src="assets/js/jquery.knob.js" type="text/javascript">
+			</script> 
+			<script src='assets/js/fullcalendar.min.js' type='text/javascript'>
+			</script> 
+			<script src='assets/js/jquery.gritter.min.js' type='text/javascript'>
+			</script> 
+			<script src="assets/js/realm.js" type="text/javascript">
+			</script> 
+			<script src="assets/js/select2.min.js" type="text/javascript">
+			</script> 
+			<script src="assets/js/bootstrap-colorpicker.js" type="text/javascript">
+			</script> 
+			<script src="assets/js/bootstrap-datepicker.js" type="text/javascript">
+			</script> 
+			<script src="assets/js/bootstrap-timepicker.js" type="text/javascript">
+			</script> 
+			<script src="assets/js/jquery.validate.min.js" type="text/javascript">
+			</script> 
+			<script src="assets/js/jquery.bootstrap.wizard.min.js" type="text/javascript">
+			</script> 
+			<script src="assets/js/tiny.editor.packed.js" type="text/javascript">
+			</script> 
+			<script src="assets/js/jquery.sortable.js" type="text/javascript">
+			</script>
+		</div>
+	</div>
+	<script>
+	       $(function() {
+	           $('.thumbnail-sortable').sortable({
+	               placeholderClass: 'col-sm-6 col-md-4'
+	           });
+	           $('.table-sortable tbody').sortable({
+	               handle: 'span'
+	           });
+	           $('.list-group-sortable').sortable({
+	               placeholderClass: 'list-group-item'
+	           });
+	           $('.list-group-sortable-exclude').sortable({
+	               placeholderClass: 'list-group-item',
+	               items: ':not(.disabled)'
+	           });
+	           $('.list-group-sortable-handles').sortable({
+	               placeholderClass: 'list-group-item',
+	               handle: 'span'
+	           });
+	           $('.list-group-sortable-connected').sortable({
+	               placeholderClass: 'list-group-item',
+	               connectWith: '.connected'
+	           });
+	       });
+	</script>
+</body>
 </html>
