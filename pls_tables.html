@@ -5,7 +5,7 @@
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	<title>Color Admin | Wizards + Validation</title>
+	<title>Color Admin | Basic Tables</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -20,11 +20,6 @@
 	<link href="assets/css/style-responsive.min.css" rel="stylesheet" />
 	<link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
 	<!-- ================== END BASE CSS STYLE ================== -->
-	
-	<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
-	<link href="assets/plugins/bootstrap-wizard/css/bwizard.min.css" rel="stylesheet" />
-	<link href="assets/plugins/parsley/src/parsley.css" rel="stylesheet" />
-	<!-- ================== END PAGE LEVEL STYLE ================== -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="assets/plugins/pace/pace.min.js"></script>
@@ -195,10 +190,10 @@
 						    <span>Client Manager </span> 
 						</a>
 						<ul class="sub-menu">
-							<li><a href="p_form_wizards_validation.html">Add New Client</a></li>
-							<li><a href="p_table_basic.html">Tables</a></li>
-							<li><a href="p_ui_widget_boxes.html">Whiteboard</a></li>
-							<li><a href="p_table_manage_buttons.html">Manage Clients</a></li>
+							<li><a href="pls_add_new_cli.html">Add New Client</a></li>
+							<li><a href="pls_tables.html">Tables</a></li>
+							<li><a href="pls_whiteboard.html">Whiteboard</a></li>
+							<li><a href="">Manage Clients</a></li>
 							<li><a href="">Summernote</a></li>
 							<li><a href="">Dropzone</a></li>
 						</ul>
@@ -231,20 +226,23 @@
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
 				<li><a href="javascript:;">Home</a></li>
-				<li><a href="javascript:;">Form Stuff</a></li>
-				<li class="active">Wizards + Validation</li>
+				<li><a href="javascript:;">Tables</a></li>
+				<li class="active">Basic Tables</li>
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
-			<h1 class="page-header">Client Wizard</h1>
+			<h1 class="page-header">Tables</h1>
 			<!-- end page-header -->
 			
 			<!-- begin row -->
 			<div class="row">
-                <!-- begin col-12 -->
-			    <div class="col-md-12">
+			    <!-- begin col-6 -->
+			    <div class="col-md-6">
 			        <!-- begin panel -->
-                    <div class="panel panel-inverse">
+                    
+                    <!-- end panel -->
+			        <!-- begin panel -->
+                    <div class="panel panel-inverse" data-sortable-id="table-basic-2">
                         <div class="panel-heading">
                             <div class="panel-heading-btn">
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -252,209 +250,229 @@
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                             </div>
-                            <h4 class="panel-title">New Client</h4>
+                            <h4 class="panel-title">Delivery Requests</h4>
                         </div>
                         <div class="panel-body">
-                            <form action="/" method="POST" data-parsley-validate="true" name="form-wizard">
-								<div id="wizard">
-									<ol>
-										<li>
-										    Identification 
-										    <small>Who are they?</small>
-										</li>
-										<li>
-										    Contact Information
-										    <small>How do we contact this client?</small>
-										</li>
-										<li>
-										    Consultation Info
-										    <small>Add Consult Info</small>
-										</li>
-										<li>
-										    Completed
-										    <small>You're Done!!!</small>
-										</li>
-									</ol>
-									<!-- begin wizard step-1 -->
-									<div class="wizard-step-1">
-                                        <fieldset>
-                                            <legend class="pull-left width-full">Identification</legend>
-                                            <!-- begin row -->
-                                            <div class="row">
-                                                <!-- begin col-4 -->
-                                                <div class="col-md-4">
-												  <div class="form-group block1">
-														<label>First Name</label>
-														<input type="text" name="firstname" placeholder="John" class="form-control" data-parsley-group="wizard-step-1"  />
-													</div>
-                                                </div>
-                                                <!-- end col-4 -->
-                                                <!-- begin col-4 -->
-                                                <div class="col-md-4">
-													<div class="form-group">
-														<label>Middle Initial</label>
-														<input type="text" name="middle" placeholder="A" class="form-control" data-parsley-group="wizard-step-1"  />
-													</div>
-                                                </div>
-                                                <!-- end col-4 -->
-                                                <!-- begin col-4 -->
-                                                <div class="col-md-4">
-													<div class="form-group">
-														<label>Last Name</label>
-														<input type="text" name="lastname" placeholder="Smith" class="form-control" data-parsley-group="wizard-step-1"  />
-													</div>
-                                                </div>
-                                                <!-- end col-4 -->
-                                            </div>
-                                            <!-- end row -->
-										</fieldset>
-									</div>
-									<!-- end wizard step-1 -->
-									<!-- begin wizard step-2 -->
-									<div class="wizard-step-2">
-										<fieldset>
-											<legend class="pull-left width-full">Contact Information</legend>
-                                            <!-- begin row -->
-                                            <div class="row">
-                                                <!-- begin col-6 -->
-                                                <div class="col-md-6">
-													<div class="form-group">
-														<label>Phone Number</label>
-														<input type="text" name="phone" placeholder="1234567890" class="form-control" data-parsley-group="wizard-step-2" data-parsley-type="number"  />
-													</div>
-                                                </div>
-                                                <!-- end col-6 -->
-                                                <!-- begin col-6 -->
-                                                <div class="col-md-6">
-													<div class="form-group">
-														<label>Email Address</label>
-														<input type="email" name="email" placeholder="someone@example.com" class="form-control" data-parsley-group="wizard-step-2" data-parsley-type="email"  />
-													</div>
-                                                </div>
-                                                <!-- end col-6 -->
-                                            </div>
-                                            <!-- end row -->
-											<div class="row">
-                                                <!-- begin col-6 -->
-                                              <div class="col-md-6">
-													<div class="form-group">
-														<label>Address 1</label>
-														<input type="text" name="phone" placeholder="1234567890" class="form-control" data-parsley-group="wizard-step-2" data-parsley-type="number"  />
-													</div>
-                                                </div>
-                                                <!-- end col-6 -->
-                                                <!-- begin col-6 -->
-                                                <div class="col-md-6">
-													<div class="form-group">
-														<label>Address 2</label>
-														<input type="text" name="phone" placeholder="1234567890" class="form-control" data-parsley-group="wizard-step-2" data-parsley-type="number"  />
-													</div>
-                                                </div>
-                                                <!-- end col-6 -->
-                                            </div>
-											<!-- end second row -->
-											<div class="row">
-                                                <!-- begin col-6 -->
-                                                <div class="col-md-4">
-													<div class="form-group">
-														<label>City</label>
-														<input type="text" name="phone" placeholder="1234567890" class="form-control" data-parsley-group="wizard-step-2" data-parsley-type="number"  />
-													</div>
-                                                </div>
-                                                <!-- end col-6 -->
-                                                <!-- begin col-6 -->
-                                                <div class="col-md-4">
-													<div class="form-group">
-														<label>State</label>
-														<input type="email" name="email" placeholder="someone@example.com" class="form-control" data-parsley-group="wizard-step-2" data-parsley-type="email"  />
-													</div>
-                                                </div>
-                                                <!-- end col-6 -->
-												<div class="col-md-4">
-													<div class="form-group">
-														<label>Zip</label>
-														<input type="text" name="phone" placeholder="1234567890" class="form-control" data-parsley-group="wizard-step-2" data-parsley-type="number"  />
-													</div>
-                                                </div>
-                                            </div>
-										</fieldset>
-									</div>
-									<!-- end wizard step-2 -->
-									<!-- begin wizard step-3 -->
-									<div class="wizard-step-3">
-										<fieldset>
-											<legend class="pull-left width-full">Consultation Info</legend>
-                                            <!-- begin row -->
-                                            <div class="row">
-                                                <!-- begin col-4 -->
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Date/Time</label>
-                                                        <div class="controls">
-                                                            <input type="password" name="password" placeholder="Your password" class="form-control" data-parsley-group="wizard-step-3"  />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                           
-                                                <!-- end col-4 -->
-                                                <!-- begin col-4 -->
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Location</label>
-                                                        <div class="controls">
-                                                            <input type="password" name="password" placeholder="Your password" class="form-control" data-parsley-group="wizard-step-3"  />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- end col-4 -->
-                                                <!-- begin col-4 -->
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Client Co. Name</label>
-                                                        <div class="controls">
-                                                            <input type="password" name="password2" placeholder="Confirmed password" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-												<div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Team Lead</label>
-                                                        <div class="controls">
-                                                            <input type="password" name="password2" placeholder="Confirmed password" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-												<div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Client Referrer</label>
-                                                        <div class="controls">
-                                                            <input type="password" name="password2" placeholder="Confirmed password" class="form-control" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- end col-6 -->
-                                            </div>
-                                            <!-- end row -->
-                                        </fieldset>
-									</div>
-									<!-- end wizard step-3 -->
-									<!-- begin wizard step-4 -->
-									<div>
-									    <div class="jumbotron m-b-0 text-center">
-                                            <h1>Saved Successfully</h1>
-                                            <p><a class="btn btn-success btn-lg" role="button">Proceed to User Profile</a></p>
-                                        </div>
-									</div>
-									<!-- end wizard step-4 -->
-								</div>
-							
+                        	<div class="table-responsive">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Req. Date</th>
+											<th>Client</th>
+											<th>Item</th>
+											<th>Images</th>
+											<th>Location</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Nicky Almera</td>
+											<td>nicky@hotmail.com</td>
+											<td>nicky@hotmail.com</td>
+											<td>nicky@hotmail.com</td>
+											<td>nicky@hotmail.com</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>Edmund Wong</td>
+											<td>edmund@yahoo.com</td>
+											<td>nicky@hotmail.com</td>
+											<td>nicky@hotmail.com</td>
+											<td>nicky@hotmail.com</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Harvinder Singh</td>
+											<td>harvinder@gmail.com</td>
+											<td>nicky@hotmail.com</td>
+											<td>nicky@hotmail.com</td>
+											<td>nicky@hotmail.com</td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td>Terry Khoo</td>
+											<td>terry@gmail.com</td>
+											<td>nicky@hotmail.com</td>
+											<td>nicky@hotmail.com</td>
+											<td>nicky@hotmail.com</td>
+										</tr>
+									</tbody>
+								</table>
+                            </div>
                         </div>
                     </div>
                     <!-- end panel -->
-                </div>
-                <!-- end col-12 -->
-            </div>
-            <!-- end row -->
+			        <!-- begin panel -->
+                    
+                    <!-- end panel -->
+			    </div>
+			    <!-- end col-6 -->
+			    <!-- begin col-6 -->
+			    <div class="col-md-6">
+			        <!-- begin panel -->
+                    <div class="panel panel-inverse" data-sortable-id="table-basic-2">
+                        <div class="panel-heading">
+                            <div class="panel-heading-btn">
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                            </div>
+                            <h4 class="panel-title">Monthly Summary</h4>
+                        </div>
+                        <div class="panel-body">
+                        	<div class="table-responsive">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Pickups</th>
+											<th>Pick/Drop</th>
+											<th>Receiving</th>
+											<th>Deliveries</th>
+											<th>Full Installs</th>
+											<th>New Clients</th>
+											<th>Consults</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>0</td>
+											<td>7</td>
+											<td>4</td>
+											<td>6</td>
+											<td>0</td>
+											<td>0</td>
+										</tr>
+									</tbody>
+								</table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end panel -->
+			        <!-- begin panel -->
+                    
+                    <!-- end panel -->
+			        <!-- begin panel -->
+                    
+                    <!-- end panel -->
+			    </div>
+			    <!-- end col-6 -->
+			</div>
+			<!-- end row -->
+			<!-- begin row -->
+			<div class="row">
+			    <!-- begin col-12 -->
+			    <div class="col-md-12">
+			        <!-- begin panel -->
+                    <div class="panel panel-inverse" data-sortable-id="table-basic-7">
+                        <div class="panel-heading">
+                            <div class="panel-heading-btn">
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                            </div>
+                            <h4 class="panel-title">Monthly Summary</h4>
+                        </div>
+                        <div class="panel-body">
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Table heading</th>
+											<th>Table heading</th>
+											<th>Table heading</th>
+											<th>Table heading</th>
+											<th>Table heading</th>
+											<th>Table heading</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="table-responsive">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Table heading</th>
+											<th>Table heading</th>
+											<th>Table heading</th>
+											<th>Table heading</th>
+											<th>Table heading</th>
+											<th>Table heading</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+											<td>Table cell</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+                    <!-- end panel -->
+			    </div>
+			    <!-- end col-12 -->
+			</div>
+			<!-- end row -->
 		</div>
 		<!-- end #content -->
 		
@@ -547,22 +565,13 @@
 	<!-- ================== END BASE JS ================== -->
 	
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-	<script src="assets/plugins/parsley/dist/parsley.js"></script>
-	<script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
-	<script src="assets/js/form-wizards-validation.demo.min.js"></script>
 	<script src="assets/js/apps.min.js"></script>
-	<script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-	<script src="assets/plugins/bootstrap-daterangepicker/moment.js"></script>
-    <script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<script src="assets/plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-	
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	
 	<script>
 		$(document).ready(function() {
 			App.init();
-			FormWizardValidation.init();
 		});
 	</script>
-</form></body>
+</body>
 </html>
